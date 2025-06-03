@@ -1,0 +1,4 @@
+div[role='alertdialog'],
+div[data-slot='alert-dialog-overlay'] {
+  z-index: 1010;
+}

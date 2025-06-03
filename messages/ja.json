@@ -1,0 +1,41 @@
+{
+  "BaseForm": {
+    "save": "保存"
+  },
+  "EmailDialog": {
+    "title": "カンタンPOP受信設定",
+    "name_label": "POP3サーバ名",
+    "name_placeholder": "例) POP3サーバ名",
+    "host_label": "受信メールサーバ",
+    "host_placeholder": "例) pop.example.com",
+    "username_label": "認証ユーザ名",
+    "username_placeholder": "例) test@example.com",
+    "password_label": "認証パスワード",
+    "password_placeholder": "",
+    "email_setting_label": "受信サーバのメールについて",
+    "retain_days_label": "ダウンロード後のメール保持日数",
+    "email_setting_options": {
+      "0": "ダウンロード後0日間だけメールを残す",
+      "7": "ダウンロード後7日間だけメールを残す",
+      "14": "ダウンロード後14日間だけメールを残す"
+    },
+    "host_required": "Host is required",
+    "username_required": "Username is required",
+    "password_required": "Password is required",
+    "Re:lation": "Re:lationシステムが最適な設定を自動的にセットします。（通常、詳細設定は必要ありません）",
+    "info_box": {
+      "lead": "Re:lationシステムが最適な設定を自動的にセットします。）",
+      "lead_link": "(通常、詳細設定は必要ありません)",
+      "list": ["受信メールサーバ", "認証ユーザ名", "認証パスワード"],
+      "footer": "を入力して [保存] をクリックしてください。"
+    },
+    "popout_window_title": "新規メール",
+    "template_select": "テンプレート選択",
+    "phrase_select": "フレーズ選択",
+    "approval_request": "承認依頼",
+    "send": "送信",
+    "to_placeholder": "入力してください",
+    "subject_placeholder": "入力してください",
+    "body_placeholder": "メッセージを入力してください"
+  }
+}

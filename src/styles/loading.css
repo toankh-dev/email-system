@@ -1,0 +1,197 @@
+/* styles/nprogress.css */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: var(--mbox-color-base) !important;
+  height: 3px !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1031;
+}
+
+#nprogress .peg {
+  box-shadow:
+    0 0 10px var(--mbox-color-base),
+    0 0 5px var(--mbox-color-base) !important;
+}
+
+/* Loading indicators and placeholders */
+
+.loading-placeholder,
+.loading-fallback {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  color: var(--mbox-color-darken-2);
+  font-size: 0.875rem;
+  position: relative;
+  padding: 20px;
+}
+
+.loading-placeholder::before,
+.loading-fallback::before,
+.sidebar-loading::before,
+.spinner::before {
+  display: none;
+}
+
+.sidebar-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  background-color: rgb(255, 255, 255);
+  color: var(--mbox-color-darken-2);
+  font-size: 0.875rem;
+  position: relative;
+  padding: 20px;
+}
+
+.sidebar-loading::before {
+  display: none;
+}
+
+.mail-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+}
+
+.spinner::before {
+  display: none;
+}
+
+@keyframes l16 {
+  0% {
+    background-position:
+      -150% 0,
+      -150% 0;
+  }
+  66% {
+    background-position:
+      250% 0,
+      -150% 0;
+  }
+  100% {
+    background-position:
+      250% 0,
+      250% 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Skeleton loading placeholders */
+.skeleton {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.06) 25%, rgba(0, 0, 0, 0.15) 37%, rgba(0, 0, 0, 0.06) 63%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.06) 25%, rgba(0, 0, 0, 0.15) 37%, rgba(0, 0, 0, 0.06) 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+/* Reusable loader class */
+.loader {
+  height: 4px;
+  width: calc(100% - 200px);
+  --c: no-repeat linear-gradient(var(--mbox-color-base) 0 0);
+  background: var(--c), var(--c), var(--mbox-color-lighten-3);
+  background-size: 60% 100%;
+  animation: l16 3s infinite;
+  display: block;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/* Store loading indicator */
+.store-provider-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Use viewport width instead of 100% */
+  height: 100vh; /* Use viewport height instead of 100% */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Extremely high z-index */
+  background-color: rgba(255, 255, 255, 0.95); /* More opaque */
+  pointer-events: all; /* Ensure clicks are caught */
+  /* Fix for iOS devices */
+  inset: 0;
+  overflow: hidden;
+  /* Initial animation */
+  animation: fadeInLoading 0.3s ease forwards;
+}
+
+@keyframes fadeInLoading {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.store-loading {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 24px 32px;
+  max-width: 80%;
+  text-align: center;
+}
+
+/* Auto-hide store loading after 8 seconds to prevent infinite loading */
+.store-provider-loading {
+  animation:
+    fadeInLoading 0.3s ease forwards,
+    autoHideLoading 8s forwards;
+}
+
+@keyframes autoHideLoading {
+  0%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

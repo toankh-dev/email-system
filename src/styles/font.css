@@ -1,0 +1,15 @@
+@font-face {
+  font-family: Noto Sans CJK JP;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    /* url(/assets/fonts/NotoSansCJKjp-Regular.woff2) format('woff2'), */ url(/assets/fonts/NotoSansCJKjp-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: Noto Sans CJK JP;
+  font-style: normal;
+  font-weight: 700;
+  src:
+    /* url(/assets/fonts/NotoSansCJKjp-Bold.woff2) format('woff2'), */ url(/assets/fonts/NotoSansCJKjp-Bold.woff) format('woff');
+}

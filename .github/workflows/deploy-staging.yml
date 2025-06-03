@@ -1,0 +1,91 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging Environment
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: ${{ vars.STAGING_URL }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set deployment variables
+        id: vars
+        run: |
+          echo "image_tag=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:develop-${{ github.sha }}" >> $GITHUB_OUTPUT
+          echo "deployment_time=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+
+      - name: Deploy to staging server via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          IMAGE_TAG: ${{ steps.vars.outputs.image_tag }}
+          CI_COMMIT_SHA: ${{ github.sha }}
+          CI_COMMIT_BRANCH: ${{ github.ref_name }}
+          BUILD_TIME: ${{ steps.vars.outputs.deployment_time }}
+          NODE_ENV: staging
+        with:
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_USER }}
+          key: ${{ secrets.STAGING_SSH_KEY }}
+          port: ${{ secrets.STAGING_PORT || 22 }}
+          envs: IMAGE_TAG,CI_COMMIT_SHA,CI_COMMIT_BRANCH,BUILD_TIME,NODE_ENV
+          script: |
+            cd ${{ vars.STAGING_DEPLOY_PATH || '/opt/email-system' }}
+
+            # Pull latest image
+            echo "Pulling Docker image: $IMAGE_TAG"
+            docker pull $IMAGE_TAG
+
+            # Export environment variables for docker-compose
+            export DOCKER_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            export CI_COMMIT_SHA=$CI_COMMIT_SHA
+            export CI_COMMIT_BRANCH=$CI_COMMIT_BRANCH
+            export BUILD_TIME=$BUILD_TIME
+            export NODE_ENV=$NODE_ENV
+            export HOST_PORT=${{ vars.STAGING_PORT || 3000 }}
+
+            # Deploy with docker-compose
+            echo "Deploying with docker-compose..."
+            docker-compose -f docker-compose.ci.yml down
+            docker-compose -f docker-compose.ci.yml up -d
+
+            # Wait for health check
+            echo "Waiting for container to be healthy..."
+            timeout 60s bash -c 'until docker inspect --format="{{json .State.Health.Status}}" email-system-ci | grep -q "healthy"; do sleep 2; done' || {
+              echo "Health check failed"
+              docker-compose -f docker-compose.ci.yml logs
+              exit 1
+            }
+
+            # Cleanup old images
+            echo "Cleaning up old images..."
+            docker image prune -af --filter "until=72h"
+
+      - name: Verify deployment
+        run: |
+          echo "Deployment completed successfully!"
+          echo "Image: ${{ steps.vars.outputs.image_tag }}"
+          echo "Environment: staging"
+          echo "Time: ${{ steps.vars.outputs.deployment_time }}"
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ Staging deployment successful"
+          else
+            echo "❌ Staging deployment failed"
+          fi
