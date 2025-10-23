@@ -57,8 +57,11 @@ importers:
         specifier: 10.1.1
         version: 10.1.1
       isomorphic-dompurify:
-        specifier: ^2.29.0
-        version: 2.30.1(postcss@8.5.6)
+        specifier: 2.29.0
+        version: 2.29.0(postcss@8.5.6)
+      jsdom:
+        specifier: ^27.0.1
+        version: 27.0.1(postcss@8.5.6)
       lucide-react:
         specifier: 0.511.0
         version: 0.511.0(react@19.1.0)
@@ -2052,9 +2055,9 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  isomorphic-dompurify@2.30.1:
-    resolution: {integrity: sha512-VJFbthRrns7BE+q3qSUJ5zxGNjuq4FqiaWXKCwnMoJbumnoQJoeOeOzP/oejKLPPtENckLWoDxGQiv5OkEFC+Q==}
-    engines: {node: '>=20.19.5'}
+  isomorphic-dompurify@2.29.0:
+    resolution: {integrity: sha512-Bgw5M9GMsuGeGSRpS81gk68t9/+r3AwuJJ5WnSxZK+tuazDodlRgmwz4ItMAfNYDgiNaizREYeiefkFQWkG7ow==}
+    engines: {node: '>=18'}
 
   iterator.prototype@1.1.5:
     resolution: {integrity: sha512-H0dkQoCa3b2VEeKQBOxFph+JAbcrQdE7KC0UkqwpLmv2EC4P41QXP+rqo9wYodACiG5/WM5s9oDApTU8utwj9g==}
@@ -4999,7 +5002,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic-dompurify@2.30.1(postcss@8.5.6):
+  isomorphic-dompurify@2.29.0(postcss@8.5.6):
     dependencies:
       dompurify: 3.3.0
       jsdom: 27.0.1(postcss@8.5.6)

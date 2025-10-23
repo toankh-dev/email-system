@@ -16,7 +16,6 @@ export const dynamic = 'force-dynamic';
 export default function LoginPage() {
   const router = useRouter();
   const previousPath = useAppStore(s => s.previous) || ROUTES.PORTAL;
-  const previousPath = useAppStore(s => s.previous) || ROUTES.PORTAL;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,7 +25,6 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axiosInstance.post('/api/auth/login', { email, password }, { headers: { 'Content-Type': 'application/json' } });
       await axiosInstance.post('/api/auth/login', { email, password }, { headers: { 'Content-Type': 'application/json' } });
       router.push(previousPath);
     } catch (err) {
@@ -48,8 +46,6 @@ export default function LoginPage() {
     >
       <div className="w-[420px] rounded-sm bg-white p-10 shadow-xl">
         <div className="mb-8 flex items-center justify-center">
-          <Image src="/images/relation-logo.png" alt="Re:lation Logo" width={60} height={60} priority />
-          <h2 className="ml-3 text-2xl font-bold" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
           <Image src="/images/relation-logo.png" alt="Re:lation Logo" width={60} height={60} priority />
           <h2 className="ml-3 text-2xl font-bold" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
             Re:lation
@@ -78,7 +74,6 @@ export default function LoginPage() {
               required
               value={email}
               onChange={e => setEmail(e.target.value)}
-              onChange={e => setEmail(e.target.value)}
               className="w-full border border-gray-300 bg-white px-4 py-3 focus:border-black focus:outline-none"
             />
           </div>
@@ -99,7 +94,6 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                onChange={e => setPassword(e.target.value)}
                 className="w-full border border-gray-300 bg-white py-3 pr-12 pl-4 focus:border-black focus:outline-none"
               />
 
@@ -107,9 +101,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(p => !p)}
-                  onClick={() => setShowPassword(p => !p)}
                   className="text-gray-500 transition-colors hover:text-gray-700 focus:outline-none"
-                  aria-label={showPassword ? 'パスワードを隠す' : 'パスワードを表示'}
                   aria-label={showPassword ? 'パスワードを隠す' : 'パスワードを表示'}
                 >
                   {!showPassword ? (

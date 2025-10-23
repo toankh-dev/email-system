@@ -9,9 +9,7 @@ import { XIcon } from 'lucide-react';
 import { DialogClose } from '@radix-ui/react-dialog';
 import Typography from '@/components/Typography';
 import { BaseForm } from '../form/BaseForm';
-import { BaseForm } from '../form/BaseForm';
 import z from 'zod';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../form/Form';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../form/Form';
 import { Input } from '../input/Input';
 import { SelectItem, SelectTrigger, SelectValue, SelectContent, Select } from '../select';
@@ -20,7 +18,6 @@ import { registerPop3Setting } from '@/services/pop3.service';
 import type { IApiErrorDetail } from '@/types/api';
 
 interface FormData {
-  message_box_id: number;
   message_box_id: number;
   name: string;
   host: string;
@@ -86,7 +83,6 @@ export default function EmailDialog(props: { isOpen: boolean; onClose: () => voi
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent showCloseButton={false} className="w-full sm:max-w-[800px]">
       <DialogContent showCloseButton={false} className="w-full sm:max-w-[800px]">
         <DialogClose className="!absolute top-4 right-4">
           <XIcon />
@@ -193,7 +189,6 @@ export default function EmailDialog(props: { isOpen: boolean; onClose: () => voi
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>{text('retain_days_label')}</FormLabel>
-                          <Select value={field.value?.toString() || ''} onValueChange={value => field.onChange(Number(value))}>
                           <Select value={field.value?.toString() || ''} onValueChange={value => field.onChange(Number(value))}>
                             <FormControl>
                               <SelectTrigger>
