@@ -1,0 +1,54 @@
+# Development docker-compose for local development
+services:
+  email-system-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: email-system:dev
+    container_name: email-system-dev
+    restart: unless-stopped
+    # Run as root in development to avoid permission issues with volumes
+    user: root
+    ports:
+      - '${PORT:-3000}:3000'
+    volumes:
+      # Mount source code for hot reload
+      - .:/usr/src/app
+      # Use named volumes for node_modules and .next to avoid permission issues
+      - node_modules:/usr/src/app/node_modules
+      - next_cache:/usr/src/app/.next
+    environment:
+      # Node.js Environment
+      - NODE_ENV=development
+      - PORT=3000
+
+      # Development features
+      - NEXT_TELEMETRY_DISABLED=1
+
+      # Hot Reload (for Docker on Windows/Mac)
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+
+      # Timezone
+      - TZ=UTC
+
+    env_file:
+      - .env.development
+    command: sh -c "pnpm install && pnpm dev"
+    networks:
+      - email-system-network
+    # Resource limits (more relaxed for dev)
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 4G
+
+# Named volumes to persist node_modules and .next cache
+volumes:
+  node_modules:
+  next_cache:
+
+networks:
+  email-system-network:
+    driver: bridge

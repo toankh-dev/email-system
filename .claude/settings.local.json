@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git rm:*)",
+      "Bash(dir:*)",
+      "Bash(cloc:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(rm:*)",
+      "Bash(tree -L 3 -I 'node_modules|.next|.git' --dirsfirst)",
+      "Bash(npm run typecheck)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm lint:all:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm format:*)",
+      "Bash(mkdir:*)",
+      "Bash(pnpm exec prettier:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

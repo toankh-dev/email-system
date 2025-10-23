@@ -1,0 +1,180 @@
+@charset "UTF-8";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@import './common.css';
+@import './font.css';
+@import './dialog.css';
+@import './sidebar.css';
+@import './button.css';
+@import './loading.css';
+@import './ticket.css';
+
+:root {
+  --background: rgb(255, 255, 255);
+  --foreground: rgb(0, 0, 0);
+
+  --mbox-color-base: #2bab38;
+  --mbox-color-lighten-5: #eaf7eb;
+  --mbox-color-lighten-4: #c8e6c9;
+  --mbox-color-lighten-3: #a5d6a7;
+  --mbox-color-lighten-2: #81c784;
+  --mbox-color-lighten-1: #66bb6a;
+  --mbox-color-darken-1: #43a047;
+  --mbox-color-darken-2: #388e3c;
+  --mbox-color-darken-3: #2e7d32;
+  --mbox-color-darken-4: #1b5e20;
+  --mbox-color-accent-1: #b9f6ca;
+  --mbox-color-accent-2: #69f0ae;
+  --mbox-color-accent-3: #00e676;
+  --mbox-color-accent-4: #00c853;
+
+  --mbox-color-grey-darken-2: #616161;
+  --mbox-color-grey-darken-4: #212121;
+
+  --mbox-color-grey-lighten-1: #bdbdbd;
+  --mbox-color-grey-lighten-5: #fafafa;
+
+  --mbox-border-color: rgba(0, 0, 0, 0.12);
+
+  --mbox-color-link: #0277bd;
+  --mbox-color-open-status: #039be5;
+
+  --font-noto-sans:
+    Noto Sans, Noto Sans CJK JP, Helvetica Neue, helvetica, arial, \30e1\30a4\30ea\30aa, Meiryo UI, meiryo, \6e38\30b4\30b7\30c3\30af,
+    Yu Gothic, yugothic, Hiragino Kaku Gothic ProN, sans-serif;
+
+  --default-font-family: var(--font-noto-sans);
+
+  --main-layout-left: 308px;
+  --main-layout-right: 0px;
+  --main-layout-top: 53px;
+  --main-layout-bottom: 0px;
+
+  --navigation-drawer-width: 52px;
+  --side-bar-width: 255px;
+
+  --main-layout-height: 100vh;
+}
+
+*,
+::before,
+::after {
+  background-repeat: no-repeat;
+  box-sizing: inherit;
+}
+
+html {
+  font-family: var(--default-font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  word-break: normal;
+  tab-size: 4;
+}
+
+body {
+  height: 100vh;
+  height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+#app {
+  display: flex;
+  height: 100%;
+
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+}
+
+#app-wrapper {
+  display: flex;
+  backface-visibility: hidden;
+  flex-direction: column;
+  flex: 1 1 auto;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+}
+
+#global-app-bar {
+  position: fixed;
+  top: 0px;
+  left: calc(var(--navigation-drawer-width, 52px) + var(--side-bar-width, 255px));
+  z-index: auto;
+
+  height: 53px;
+  width: calc(100% - (var(--navigation-drawer-width, 52px) + var(--side-bar-width, 255px)));
+  background-color: var(--mbox-color-lighten-5);
+  border-bottom: 1px solid var(--mbox-border-color);
+  border-right: 1px solid var(--mbox-border-color);
+}
+
+/* Main Content */
+#main-content {
+  width: 100%;
+  max-width: 100%;
+  height: var(--main-layout-height);
+
+  flex: 1 0 auto;
+  padding-left: var(--main-layout-left);
+  padding-bottom: var(--main-layout-bottom);
+  padding-top: var(--main-layout-top);
+  padding-right: var(--main-layout-right);
+
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#main-sub-content {
+  width: 100%;
+  max-width: 100%;
+  height: calc(var(--main-layout-height) - var(--main-layout-top));
+
+  flex: 1 0 auto;
+  padding-left: var(--side-bar-width, 255px);
+  padding-bottom: var(--main-layout-bottom);
+  padding-right: var(--main-layout-right);
+
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* tooltip.css */
+.tooltip-content {
+  position: relative;
+  display: inline-block;
+  background-color: #44403c; /* stone-600 */
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(-4px) scale(0.95);
+  transform-origin: top;
+  transition:
+    transform 200ms ease-out,
+    opacity 200ms ease-out;
+}
+
+.tooltip-content[data-state='open'] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.tooltip-content[data-state='closed'] {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.95);
+  transition:
+    transform 150ms ease-in,
+    opacity 150ms ease-in;
+}

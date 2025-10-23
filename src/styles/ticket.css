@@ -1,0 +1,17 @@
+#ticket-history::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 2px;
+  height: 12px;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%);
+  background-color: #e0e0e0;
+}
+
+#ticket-message-action .line {
+  width: 2px;
+  height: 8px;
+  background-color: #e0e0e0;
+}

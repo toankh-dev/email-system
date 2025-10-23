@@ -1,0 +1,25 @@
+# Development Dockerfile - Lightweight for fast builds
+FROM node:lts-alpine3.22
+
+ENV ROOT_DIR=/usr/src/app \
+    NODE_ENV=development \
+    PNPM_HOME=/pnpm \
+    PATH=$PATH:/pnpm
+
+WORKDIR $ROOT_DIR
+
+# Install pnpm globally (minimal layer)
+RUN corepack enable && corepack prepare pnpm@10.9.0 --activate \
+  && apk update && apk upgrade --no-cache \
+  && rm -rf /var/cache/apk/* /tmp/*
+
+# Note: We don't install node_modules here because:
+# 1. They will be in a named volume (managed by docker-compose)
+# 2. Reduces image size from ~800MB to ~200MB
+# 3. Dependencies installed at runtime via docker-compose command
+
+EXPOSE 3000
+
+# Install dependencies and start dev server
+# This runs every time container starts, using cached volume
+CMD ["sh", "-c", "pnpm install && pnpm dev"]

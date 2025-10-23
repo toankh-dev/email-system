@@ -1,0 +1,41 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Force LF for shell scripts (important for Docker)
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Force LF for Docker files
+Dockerfile* text eol=lf
+docker-compose*.yml text eol=lf
+.dockerignore text eol=lf
+
+# Force LF for CI/CD files
+.gitlab-ci.yml text eol=lf
+.github/workflows/*.yml text eol=lf
+
+# Documents
+*.md text eol=lf
+*.txt text eol=lf
+
+# Config files
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+
+# Source code
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+
+# Exclude from export (not included in git archive)
+.gitattributes export-ignore
+.gitignore export-ignore
+.github export-ignore
+.vscode export-ignore
+docs export-ignore
+*.md export-ignore

@@ -1,0 +1,69 @@
+# Dependabot configuration for automatic dependency updates
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Asia/Ho_Chi_Minh'
+    open-pull-requests-limit: 10
+    labels:
+      - 'dependencies'
+      - 'npm'
+    commit-message:
+      prefix: '⬆️ chore'
+      include: 'scope'
+    versioning-strategy: increase
+    groups:
+      nextjs:
+        patterns:
+          - 'next'
+          - 'eslint-config-next'
+      react:
+        patterns:
+          - 'react'
+          - 'react-dom'
+          - '@types/react*'
+      radix-ui:
+        patterns:
+          - '@radix-ui/*'
+      tanstack:
+        patterns:
+          - '@tanstack/*'
+      dev-dependencies:
+        dependency-type: 'development'
+        update-types:
+          - 'minor'
+          - 'patch'
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Asia/Ho_Chi_Minh'
+    open-pull-requests-limit: 5
+    labels:
+      - 'dependencies'
+      - 'github-actions'
+    commit-message:
+      prefix: '⬆️ chore(ci)'
+
+  - package-ecosystem: 'docker'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Asia/Ho_Chi_Minh'
+    open-pull-requests-limit: 5
+    labels:
+      - 'dependencies'
+      - 'docker'
+    commit-message:
+      prefix: '⬆️ chore(docker)'
