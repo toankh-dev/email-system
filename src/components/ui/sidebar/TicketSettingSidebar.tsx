@@ -68,7 +68,6 @@ export const TicketSettingSidebar: React.FC = React.memo(() => {
               messageBoxId: '1',
             },
           }),
-          }),
         },
       ],
     },
@@ -190,7 +189,6 @@ export const TicketSettingSidebar: React.FC = React.memo(() => {
               messageBoxId: '1',
             },
           }),
-          }),
         },
       ],
     },
@@ -204,7 +202,6 @@ export const TicketSettingSidebar: React.FC = React.memo(() => {
         style={{ gridTemplateAreas: '"prepend content append"' }}
       >
         <div className="self-center overflow-hidden" style={{ gridArea: 'content' }}>
-        <div className="self-center overflow-hidden" style={{ gridArea: 'content' }}>
           <div className="sidebar-header-content">
             <div className="bg-color-base m-2 inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-white">
               <WalletCards className="inline-flex items-center" />
@@ -216,7 +213,6 @@ export const TicketSettingSidebar: React.FC = React.memo(() => {
             </BaseToolTip>
           </div>
         </div>
-        <div className="flex flex-row items-center self-center" style={{ gridArea: 'append' }}>
         <div className="flex flex-row items-center self-center" style={{ gridArea: 'append' }}>
           <Button variant="ghost" className="h-10 w-10 rounded">
             <ListTodo className="h-6! w-6!" />
@@ -230,19 +226,14 @@ export const TicketSettingSidebar: React.FC = React.memo(() => {
       </div>
       <div id="sidebar-body" className="flex h-full flex-col">
         <div id="sidebar-scroll" className="pace-y-1 h-full overflow-y-auto px-2 pt-6">
-        <div id="sidebar-scroll" className="pace-y-1 h-full overflow-y-auto px-2 pt-6">
           {sidebarItems.map((section, index) => (
             <div key={index}>
               <h5 className="min-h-8 w-full py-2 pl-2 text-xs font-[700]">{section.group}</h5>
-              <h5 className="min-h-8 w-full py-2 pl-2 text-xs font-[700]">{section.group}</h5>
 
-              {section.items.map(item => {
-                return <ActiveLink key={item.key} href={item.href} item={item} />;
               {section.items.map(item => {
                 return <ActiveLink key={item.key} href={item.href} item={item} />;
               })}
 
-              {index < sidebarItems.length - 1 && <hr className="text-gray-300" />}
               {index < sidebarItems.length - 1 && <hr className="text-gray-300" />}
             </div>
           ))}

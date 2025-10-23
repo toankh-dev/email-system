@@ -15,7 +15,14 @@ const baseConfig: NextConfig = {
 
   // Static assets configuration
   images: {
-    remotePatterns: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        port: '',
+        pathname: '**',
+      },
+    ],
   },
 
   async rewrites() {

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Inbox, Send, ChevronDown, Clock3, X, Check, WalletCards, Settings, ListTodo } from 'lucide-react';
-import { Inbox, Send, ChevronDown, Clock3, X, Check, WalletCards, Settings, ListTodo } from 'lucide-react';
 // components
 import { BaseToolTip } from '../tooltip';
 import { ActiveLink } from '../link';
@@ -263,7 +262,6 @@ export const TicketSidebar: React.FC = React.memo(() => {
         style={{ gridTemplateAreas: '"prepend content append"' }}
       >
         <div className="self-center overflow-hidden" style={{ gridArea: 'content' }}>
-        <div className="self-center overflow-hidden" style={{ gridArea: 'content' }}>
           <div className="sidebar-header-content">
             <div className="bg-color-base m-2 inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-white">
               <WalletCards className="inline-flex items-center" />
@@ -276,12 +274,10 @@ export const TicketSidebar: React.FC = React.memo(() => {
           </div>
         </div>
         <div className="flex flex-row items-center" style={{ gridArea: 'append' }}>
-        <div className="flex flex-row items-center" style={{ gridArea: 'append' }}>
           <Button variant="ghost" className="h-10 w-10 justify-center rounded">
             <ListTodo className="h-6! w-6!" />
           </Button>
           <BaseToolTip contentProps={{ children: '設定' }}>
-            <Button variant="ghost" className="h-10 w-10 justify-center rounded">
             <Button variant="ghost" className="h-10 w-10 justify-center rounded">
               <Settings className="h-6! w-6!" />
             </Button>
@@ -303,19 +299,6 @@ export const TicketSidebar: React.FC = React.memo(() => {
               )
             }
           >
-          <Button
-            className="color-grey-darken-4 button-hover h-10 w-[192px] items-center rounded-3xl bg-white px-[18px]"
-            onClick={() =>
-              openCenteredPopup(
-                formatString(ROUTES.CREATE_MAIL_POP_OUT, {
-                  query: { messageBoxId: '1' },
-                }),
-                '新規作成',
-                890,
-                676
-              )
-            }
-          >
             <Send className="color-grey-darken-2 mr-2 h-6! w-6!" />
             新規作成
           </Button>
@@ -323,7 +306,6 @@ export const TicketSidebar: React.FC = React.memo(() => {
             <ChevronDown />
           </Button>
         </div>
-        <div id="sidebar-scroll" className="h-full space-y-1 overflow-y-auto px-2">
         <div id="sidebar-scroll" className="h-full space-y-1 overflow-y-auto px-2">
           {sidebarItems.map((section, index) => (
             <div key={index}>
@@ -345,8 +327,6 @@ export const TicketSidebar: React.FC = React.memo(() => {
                 </Button>
               )}
 
-              {section.items.map(item => {
-                return <ActiveLink key={item.key} href={item.href} item={item} />;
               {section.items.map(item => {
                 return <ActiveLink key={item.key} href={item.href} item={item} />;
               })}

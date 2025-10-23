@@ -8,7 +8,6 @@ import '@/styles/globals.css';
 import MetadataUpdater from '@/components/MetadataUpdater';
 import { Suspense } from 'react';
 import LoadingBar from '@/components/ui/loading/loading';
-// import TopProgressRouter from '@/components/ui/loading/TopProgress';
 
 export const metadata: Metadata = {
   title: 'リレーション | Re:lation',
@@ -24,7 +23,6 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <TopProgressRouter />
         <Suspense fallback={<LoadingBar />}>
           <NextIntlClientProvider>
             <Toaster position="top-right" richColors />

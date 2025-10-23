@@ -107,16 +107,12 @@ export const TicketSettingMailSidebar: React.FC = React.memo(() => {
     <div id="sidebar-content" className="h-full w-full">
       <div id="sidebar-body" className="flex h-full flex-col">
         <div id="sidebar-scroll" className="pace-y-1 h-full overflow-y-auto px-2 pt-6">
-        <div id="sidebar-scroll" className="pace-y-1 h-full overflow-y-auto px-2 pt-6">
           {sidebarItems.map((section, index) => (
             <div key={index}>
               {section.items.map(item => {
                 return <ActiveLink key={item.key} href={item.href} item={item} />;
-              {section.items.map(item => {
-                return <ActiveLink key={item.key} href={item.href} item={item} />;
               })}
 
-              {index < sidebarItems.length - 1 && <hr className="text-gray-300" />}
               {index < sidebarItems.length - 1 && <hr className="text-gray-300" />}
             </div>
           ))}

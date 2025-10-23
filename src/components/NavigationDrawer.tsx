@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Link from 'next/link';
 import { House, AppWindow, Contact, Wrench, BookOpen } from 'lucide-react';
 // components
 // components
@@ -11,12 +10,9 @@ import { BaseToolTip } from './ui/tooltip';
 import PopupInbox from './PopupInbox';
 // constants
 import { ROUTES } from '@/constants';
-// constants
-import { ROUTES } from '@/constants';
 
 const NavigationDrawer: React.FC = () => {
   const [showTicketPopup, setShowTicketPopup] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const ticketRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -64,7 +60,6 @@ const NavigationDrawer: React.FC = () => {
         <div className="flex h-full w-full flex-col justify-between pt-6">
           <div className="flex h-full w-full flex-col items-center">
             <div className="flex h-13 w-full cursor-pointer items-center justify-center hover:bg-[#494949]">
-            <div className="flex h-13 w-full cursor-pointer items-center justify-center hover:bg-[#494949]">
               <BaseToolTip contentProps={{ children: <>ポータル</> }}>
                 <House />
               </BaseToolTip>
@@ -76,7 +71,6 @@ const NavigationDrawer: React.FC = () => {
                 </BaseToolTip>
               </div>
             </div>
-            <div className="flex h-13 w-full cursor-pointer items-center justify-center hover:bg-[#494949]">
             <div className="flex h-13 w-full cursor-pointer items-center justify-center hover:bg-[#494949]">
               <BaseToolTip contentProps={{ children: <>コンタクト管理</> }}>
                 <Contact />
@@ -94,7 +88,6 @@ const NavigationDrawer: React.FC = () => {
                 </Link>
               </BaseToolTip>
             </div>
-            <div className="flex h-13 w-full cursor-pointer items-center justify-center hover:bg-[#494949]">
             <div className="flex h-13 w-full cursor-pointer items-center justify-center hover:bg-[#494949]">
               <BaseToolTip contentProps={{ children: <>ヘルプ</> }}>
                 <BookOpen />
