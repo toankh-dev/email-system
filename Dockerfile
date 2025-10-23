@@ -42,13 +42,6 @@ RUN --mount=type=cache,target=.next/cache \
 # ---------- Final image ----------
 FROM node:lts-alpine3.22 AS runner
 
-# Metadata
-LABEL maintainer="your-email@example.com"
-LABEL org.opencontainers.image.title="Email System"
-LABEL org.opencontainers.image.description="Production-ready email system application"
-LABEL org.opencontainers.image.vendor="Your Company"
-LABEL org.opencontainers.image.licenses="MIT"
-
 ENV ROOT_DIR=/usr/src/app \
     NODE_ENV=production \
     PORT=3000
@@ -74,10 +67,6 @@ RUN chmod -R 555 /usr/src/app \
 USER admin
 
 EXPOSE 3000
-
-# Add healthcheck directly in Dockerfile
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
 
 # Use exec form to ensure proper signal handling
 CMD ["node", "server.js"]
