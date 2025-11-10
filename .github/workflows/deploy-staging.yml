@@ -29,7 +29,7 @@ jobs:
           echo "deployment_time=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
 
       - name: Deploy to staging server via SSH
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1.2.3
         env:
           IMAGE_TAG: ${{ steps.vars.outputs.image_tag }}
           CI_COMMIT_SHA: ${{ github.sha }}
